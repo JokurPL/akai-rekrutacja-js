@@ -68,8 +68,11 @@ function filterPokemons(pokemons) {
       if (pokemon.name.toLowerCase().indexOf(pokemonName.toLowerCase()) != -1) {
         filteredPokemons.push(pokemon);
       }
-    } else if (choosedTypes.includes(...pokemon.types)) {
-      filteredPokemons.push(pokemon);
+    } else {
+      pokemon.types.forEach((element) => {
+        if (choosedTypes.filter((type) => type == element).length > 0)
+          filteredPokemons.push(pokemon);
+      });
     }
   });
 
